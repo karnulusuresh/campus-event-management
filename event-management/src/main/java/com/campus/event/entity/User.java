@@ -1,11 +1,17 @@
-package com.campus.event.model;
+package com.campus.event.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.stereotype.Repository; 
+
 @Entity
 @Table(name = "users")
+@Data
+@Repository
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

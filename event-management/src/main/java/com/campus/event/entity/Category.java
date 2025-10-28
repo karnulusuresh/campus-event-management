@@ -1,10 +1,16 @@
-package com.campus.event.model;
+package com.campus.event.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
+
 import java.util.List;
+
+import org.springframework.stereotype.Repository;
 
 @Entity
 @Table(name = "categories")
+@Data
+@Repository
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
