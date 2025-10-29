@@ -12,15 +12,17 @@ import org.springframework.stereotype.Repository;
 @Entity
 @Table(name = "events")
 @Data
-@Repository
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long eventId;
 
     private String title;
+    
     private String description;
+    
     private LocalDate eventDate;
+    
     private String location;
 
     private LocalDateTime createdAt = LocalDateTime.now();

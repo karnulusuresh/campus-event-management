@@ -1,13 +1,19 @@
 package com.campus.event.service;
 
+import com.campus.event.dto.CategoryDTO;
+import com.campus.event.pojo.CategoryRequest;
+
 import java.util.List;
 
-import com.campus.event.entity.Category;
-
 public interface CategoryService {
-    List<Category> getAllCategories();
-    Category getCategoryById(Long id);
-    Category createCategory(Category category);
-    Category updateCategory(Long id, Category category);
+	
+    CategoryDTO createCategory(CategoryRequest request);
+    
+    CategoryDTO getCategoryById(Long id);
+    
+    List<CategoryDTO> getAllCategories();
+    
+    CategoryDTO updateCategory(Long id, CategoryDTO categoryDTO);
+    
     void deleteCategory(Long id);
 }

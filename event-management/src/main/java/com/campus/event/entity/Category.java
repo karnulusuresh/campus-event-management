@@ -5,12 +5,9 @@ import lombok.Data;
 
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
 @Entity
 @Table(name = "categories")
 @Data
-@Repository
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +21,14 @@ public class Category {
     // One category can have many events
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<Event> events;
+    
+    public Category() {}
+
+    public Category(Long id, String name, String description) {
+        this.categoryId = id;
+        this.name = name;
+        this.description = description;
+    }
 
     // Getters and Setters
 }
