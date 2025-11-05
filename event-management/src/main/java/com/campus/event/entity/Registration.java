@@ -1,32 +1,35 @@
 package com.campus.event.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
-
+import lombok.*;
 import java.time.LocalDateTime;
 
-import org.springframework.stereotype.Repository;
+import com.campus.event.constant.RegistrationEnum;
 
 @Entity
-@Table(name = "registrations")
-@Data
-@Repository
+@Table(name = "registrations",
+       uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "event_id"}))
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Registration {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long registrationId;
+    private Long id;
 
-    private LocalDateTime registrationDate = LocalDateTime.now();
-
-    // Many registrations belong to one user
-    @ManyToOne
-    @JoinColumn(name = "user_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    // Many registrations belong to one event
-    @ManyToOne
-    @JoinColumn(name = "event_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "event_id", nullable = false)
     private Event event;
 
-    // Getters and Setters
+    @Enumerated(EnumType.STRING)
+    private RegistrationEnum status;
+
+    private LocalDateTime registeredAt;
 }

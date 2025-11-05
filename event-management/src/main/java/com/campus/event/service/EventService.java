@@ -2,20 +2,23 @@ package com.campus.event.service;
 
 import java.util.List;
 
-import com.campus.event.entity.Event;
+import com.campus.event.dto.EventDTO;
+import com.campus.event.pojo.EventRequest; 
 
 public interface EventService {
 	
-	List<Event> getAllEvents();
+	List<EventDTO> getAllEvents();
 	
-    Event getEventById(Long id);
+	EventDTO getEventById(Long id);
     
-    List<Event> getEventsByCategory(Long categoryId);
+	List<EventDTO> getEventsByCategory(Long categoryId);
     
-    Event createEvent(Event event);
+	EventDTO createEvent(EventRequest eventRequest);
     
-    Event updateEvent(Long id, Event event);
+	EventDTO updateEvent(Long id, EventRequest eventRequest);
     
-    void deleteEvent(Long id);
+    String  deleteEvent(Long id);
+    
+    String  deleteAllEvents();
 
 }

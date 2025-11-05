@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.campus.event.entity.User;
+import com.campus.event.dto.UserDTO;
 import com.campus.event.pojo.UserRequest;
 import com.campus.event.service.UserService;
 
@@ -28,32 +28,33 @@ public class UserController {
 	private final UserService userService;
 	
 	@PostMapping 
-	public User createUser( @RequestBody UserRequest request) {
+	public UserDTO createUser( @RequestBody UserRequest request) {
 		log.info("createUser() called");
-		User response = userService.createUser(request);
+		UserDTO response = userService.createUser(request);
 		log.info("created user with details: {}",response);
 		return response;
 	}
 	
 	@GetMapping
-	public List<User> getAllUsers() {
+	public List<UserDTO> getAllUsers() {
 		log.info("getAllUsers() called");
-		List<User> response = userService.getAllUsers();
+		List<UserDTO> response = userService.getAllUsers();
+		log.info("fetched all users successfully..");
 		return response; 
 	}
 	
 	@GetMapping("/{id}")
-	public User getUserById(@PathVariable Long id) {
+	public UserDTO getUserById(@PathVariable Long id) {
 		log.info("getUserById() called with id : {} ",id);
-		User response = userService.getUserById(id);
+		UserDTO response = userService.getUserById(id);
 		log.info("recieved response : {}",response);
 		return response;
 	}
 	
 	@PutMapping("/{id}")
-	public User updateUserById(@PathVariable Long id,@RequestBody UserRequest updatedUser) {
+	public UserDTO updateUserById(@PathVariable Long id,@RequestBody UserRequest updatedUser) {
 		log.info("updateUserById() called with id : {}",id);
-		User response = userService.updateUser(id, updatedUser);
+		UserDTO response = userService.updateUser(id, updatedUser);
 		log.info("recieved response from the updateUser as : {}",response);
 		return response;
 	}

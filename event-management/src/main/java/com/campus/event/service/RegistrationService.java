@@ -1,12 +1,15 @@
 package com.campus.event.service;
 
+import com.campus.event.dto.RegistrationDTO;
+import com.campus.event.pojo.RegistrationRequest;
+
 import java.util.List;
 
-import com.campus.event.entity.Registration;
-
 public interface RegistrationService {
-    List<Registration> getAllRegistrations();
-    List<Registration> getRegistrationsByUser(Long userId);
-    Registration registerUserForEvent(Registration registration);
-    void cancelRegistration(Long id);
+    RegistrationDTO registerUserForEvent(RegistrationRequest request);
+    RegistrationDTO getRegistrationById(Long id);
+    List<RegistrationDTO> getAllRegistrations();
+    List<RegistrationDTO> getRegistrationsByUser(Long userId);
+    List<RegistrationDTO> getRegistrationsByEvent(Long eventId);
+    RegistrationDTO cancelRegistration(Long registrationId, Long performedByUserId);
 }

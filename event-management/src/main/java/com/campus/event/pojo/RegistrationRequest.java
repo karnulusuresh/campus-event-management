@@ -1,13 +1,13 @@
 package com.campus.event.pojo;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
 public class RegistrationRequest {
-	
-	private Long userId;
+    @NotNull(message = "userId is required")
+    private Long userId;
 
-    private Long eventId; 
-
-
+    @NotNull(message = "eventId is required")
+    private Long eventId;
 }
