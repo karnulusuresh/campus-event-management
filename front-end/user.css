@@ -1,0 +1,118 @@
+/* user.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  background-color: #f8fafc;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+nav {
+  background-color: #283e4a;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 2px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav ul li a {
+  color: #a7b8c6;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  color: #fff;
+  background-color: #4a90e2;
+}
+
+main.content {
+  padding: 2rem 3rem;
+  flex-grow: 1;
+}
+
+h2 {
+  color: #283e4a;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+table#usersTable {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+table#usersTable thead {
+  background-color: #4a90e2;
+  color: white;
+}
+
+table#usersTable thead th {
+  text-align: left;
+  padding: 1rem 1.5rem;
+  font-weight: 600;
+}
+
+table#usersTable tbody tr:nth-child(even) {
+  background-color: #f4f7fb;
+}
+
+table#usersTable tbody td {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #e1e8f0;
+  color: #555;
+}
+
+.btn {
+  background-color: #4a90e2;
+  color: white;
+  padding: 0.4rem 1rem;
+  border: none;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(74, 144, 226, 0.4);
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: #005a9c;
+  outline: none;
+}
+
+.btn-small {
+  padding: 0.3rem 0.8rem;
+  font-size: 0.85rem;
+}

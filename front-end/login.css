@@ -1,0 +1,111 @@
+/* style.css additions for Login page */
+
+.auth-container {
+  max-width: 380px;
+  margin: 6rem auto 3rem;
+  padding: 2.5rem 2rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.auth-container .form-group input,
+.auth-container .form-group select,
+.auth-container .btn {
+  width: 100%;
+  box-sizing: border-box; /* ensure padding included in width */
+}
+
+.auth-container .btn {
+  margin-top: 1rem; /* add spacing above button */
+  padding: 0.75rem 0;
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  background-color: #4a90e2;
+  color: white;
+  box-shadow: 0 6px 20px rgba(74,144,226,0.5);
+  transition: background-color 0.3s ease;
+}
+
+.auth-container .btn:hover,
+.auth-container .btn:focus {
+  background-color: #005a9c;
+  outline: none;
+}
+
+
+.form-group {
+  margin: 1.5rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  color: #4a90e2;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.form-group input:focus {
+  border-color: #4a90e2;
+  outline: none;
+}
+
+.btn {
+  width: 100%;
+  background-color: #4a90e2;
+  color: white;
+  padding: 0.75rem 0;
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(74, 144, 226, 0.5);
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: #005a9c;
+  outline: none;
+}
+
+.error-text {
+  color: #d9534f;
+  margin-top: 1rem;
+  font-weight: 600;
+  min-height: 1.2em;
+}
+
+.auth-container p {
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.auth-container p a {
+  color: #4a90e2;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-container p a:hover {
+  text-decoration: underline;
+}

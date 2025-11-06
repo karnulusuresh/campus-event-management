@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard | Campus Event System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <div class="logo">Event Management System</div>
+    <ul>
+      <li><a href="users.html">Users</a></li>
+      <li><a href="event.html">Events</a></li>
+      <li><a href="registrations.html">Registrations</a></li>
+      <li><a href="reports.html">Reports</a></li>
+      <li><a href="settings.html">Settings</a></li>
+      <li><a href="login.html" onclick="logout()">Logout</a></li>
+    </ul>
+  </nav>
+
+  <header class="header-banner">
+    <h1>Welcome to Campus Events!</h1>
+    <p>Use the navigation menu to manage Users, Events, Registrations, Reports, and Settings.</p>
+  </header>
+
+  <main class="dashboard-cards">
+    <section class="card">
+      <h3>Upcoming Events</h3>
+      <p>Check all upcoming events scheduled on campus</p>
+      <a href="event.html" class="btn">View Events</a>
+    </section>
+    <section class="card">
+      <h3>Recent Registrations</h3>
+      <p>See who recently registered for events</p>
+      <a href="registrations.html" class="btn">View Registrations</a>
+    </section>
+    <section class="card">
+      <h3>User Management</h3>
+      <p>Manage user accounts and roles</p>
+      <a href="users.html" class="btn">View Users</a>
+    </section>
+    <section class="card">
+      <h3>Reports & Analytics</h3>
+      <p>Generate reports and view event statistics</p>
+      <a href="reports.html" class="btn">View Reports</a>
+    </section>
+  </main>
+
+  <section class="stats-overview container">
+    <h2>Stats Overview</h2>
+    <div class="stats-grid">
+      <div class="stat">
+        <h4>Users</h4>
+        <p class="number">1,254</p>
+        <p class="desc">Active users registered</p>
+      </div>
+      <div class="stat">
+        <h4>Events</h4>
+        <p class="number">87</p>
+        <p class="desc">Total events created</p>
+      </div>
+      <div class="stat">
+        <h4>Registrations</h4>
+        <p class="number">3,120</p>
+        <p class="desc">Event registrations this year</p>
+      </div>
+      <div class="stat">
+        <h4>Pending Approvals</h4>
+        <p class="number">24</p>
+        <p class="desc">Pending event registrations</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="activity-events-container">
+    <section class="recent-activity container">
+    <h2>Recent Activity Feed</h2>
+    <ul>
+      <li><strong>Jane Doe</strong> registered for <em>Tech Symposium 2025</em> 10 minutes ago</li>
+      <li><strong>Admin</strong> approved <em>Music Fest 2025</em> event yesterday</li>
+      <li><strong>John Smith</strong> updated profile details</li>
+      <li><strong>Admin</strong> added a new event category <em>Workshop</em></li>
+      <li><strong>Emma Brown</strong> cancelled registration for <em>Health Seminar</em></li>
+    </ul>
+  </section>
+
+  <section class="top-events container">
+    <h2>Top Upcoming Events</h2>
+    <ol>
+      <li><strong>Science Fair 2025</strong> - May 14, 2025</li>
+      <li><strong>Startup Pitch Day</strong> - June 2, 2025</li>
+      <li><strong>Annual Sports Meet</strong> - July 10, 2025</li>
+      <li><strong>Art & Culture Fest</strong> - August 18, 2025</li>
+      <li><strong>Career Counseling Workshop</strong> - September 5, 2025</li>
+    </ol>
+  </section>
+  </section>
+
+  <footer>
+    <p>© 2025 Campus Event System. All rights reserved.</p>
+  </footer>
+
+  <script src="auth.js"></script>
+</body>
+</html>
