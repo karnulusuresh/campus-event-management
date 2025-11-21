@@ -14,7 +14,7 @@
       <li><a href="event.html">Events</a></li>
       <li><a href="registrations.html">Registrations</a></li>
       <li><a href="reports.html">Reports</a></li>
-      <li><a href="settings.html">Settings</a></li>
+      <!-- <li><a href="settings.html">Settings</a></li> -->
       <li><a href="login.html" onclick="logout()">Logout</a></li>
     </ul>
   </nav>
@@ -29,26 +29,7 @@
     </table>
   </main>
 
-  <script src="auth.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", async () => {
-      const token = localStorage.getItem("jwt");
-      const res = await fetch("http://localhost:8080/api/users", {
-        headers: { "Authorization": `Bearer ${token}` }
-      });
-      const users = await res.json();
-      const tbody = document.querySelector("#usersTable tbody");
-      users.forEach(u => {
-        tbody.innerHTML += `
-          <tr>
-            <td>${u.userId}</td>
-            <td>${u.name}</td>
-            <td>${u.email}</td>
-            <td>${u.userRole}</td>
-            <td><button class="btn btn-small">Edit</button></td>
-          </tr>`;
-      });
-    });
-  </script>
+  <script src="users.js"></script>
+  
 </body>
 </html>

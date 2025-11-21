@@ -2,49 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Registrations | Campus Event System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register for Event | Campus Event System</title>
   <link rel="stylesheet" href="registration.css">
 </head>
 <body>
+
   <nav>
     <div class="logo">Campus Event System</div>
     <ul>
       <li><a href="index.html">Home</a></li>
-      <li><a href="users.html">Users</a></li>
-      <li><a href="event.html">Events</a></li>
       <li><a href="login.html" onclick="logout()">Logout</a></li>
     </ul>
   </nav>
 
   <div class="container">
-    <h2>All Registrations</h2>
+    <h2>Event Registration</h2>
 
-    <table id="registrationTable">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>User</th>
-          <th>Event</th>
-          <th>Status</th>
-          <th>Registered At</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+    <form id="registerForm" class="reg-form">
+      <input type="text" id="nameId" placeholder="Enter your full name" required>
+      <input type="email" id="emailId" placeholder="Enter your email" required>
+      <input type="text" id="titleId" placeholder="Enter event title" required>
 
-    <hr>
-
-    <h3>Register for an Event</h3>
-    <form id="registerForm">
-      <input type="number" id="userId" placeholder="User ID" required>
-      <input type="number" id="eventId" placeholder="Event ID" required>
-      <button type="submit">Register</button>
+      <button type="submit" class="btn">Register</button>
     </form>
 
-    <p id="regMsg" style="color:green;"></p>
+    <p id="regMsg"></p>
   </div>
 
   <script src="auth.js"></script>
-  <script src="registrations.js"></script>
+
+  <script>
+    async function registerUser(e) {
+      e.preventDefault();
+
+      const token = localStorage.getItem("token");
+      if (!token) return window.location.href = "login.html";
+
+      const payload = {
+        name: document.getElementById("nameId").value,
+        email: document.getElementById("emailId").value,
+        eventTitle: document.getElementById("titleId").value
+      };
+
+      try {
+        const response = await fetch("http://localhost:8080/api/registrations", {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+          document.getElementById("regMsg").textContent = "Registration failed!";
+          return;
+        }
+
+        const result = await response.json();
+        const registrationId = result.registrationId;
+
+        // ✅ Redirect to payment page with registration id
+        window.location.href = `payment.html?rid=${registrationId}`;
+
+      } catch (err) {
+        console.error(err);
+        document.getElementById("regMsg").textContent = "Something went wrong!";
+      }
+    }
+
+    document.getElementById("registerForm").addEventListener("submit", registerUser);
+  </script>
+
 </body>
 </html>

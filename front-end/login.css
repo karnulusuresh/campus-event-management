@@ -1,111 +1,192 @@
-/* style.css additions for Login page */
+/* =======================
+   CAMPUS THEME LOGIN PAGE
+========================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* -------------------- PAGE BACKGROUND -------------------- */
+
+body {
+  background: linear-gradient(135deg, rgba(108,92,231,0.18), rgba(0,206,201,0.15)),
+              url("https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1920&q=60");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* -------------------- GLASS CARD -------------------- */
 
 .auth-container {
-  max-width: 380px;
-  margin: 6rem auto 3rem;
+  width: 95%;
+  max-width: 420px;
+
+  background: rgba(255,255,255,0.28);
+  border-radius: 18px;
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.45);
+  box-shadow: 0 6px 30px rgba(0,0,0,0.15);
+
   padding: 2.5rem 2rem;
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
+
+  animation: fadeIn 0.5s ease-in-out;
 }
 
-.auth-container .form-group input,
-.auth-container .form-group select,
-.auth-container .btn {
-  width: 100%;
-  box-sizing: border-box; /* ensure padding included in width */
+/* -------------------- TITLE -------------------- */
+
+.auth-container h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #6c5ce7;
+  margin-bottom: 1.8rem;
 }
 
-.auth-container .btn {
-  margin-top: 1rem; /* add spacing above button */
-  padding: 0.75rem 0;
-  border: none;
-  border-radius: 25px;
-  font-weight: 600;
-  font-size: 1.1rem;
-  cursor: pointer;
-  background-color: #4a90e2;
-  color: white;
-  box-shadow: 0 6px 20px rgba(74,144,226,0.5);
-  transition: background-color 0.3s ease;
-}
-
-.auth-container .btn:hover,
-.auth-container .btn:focus {
-  background-color: #005a9c;
-  outline: none;
-}
-
+/* -------------------- FORM GROUP -------------------- */
 
 .form-group {
-  margin: 1.5rem;
+  margin: 1.2rem 0;
   text-align: left;
 }
 
 .form-group label {
-  display: block;
+  color: #6c5ce7;
   font-weight: 600;
-  color: #4a90e2;
-  margin-bottom: 0.5rem;
   font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+  display: block;
 }
 
 .form-group input {
   width: 100%;
-  padding: 0.6rem 1rem;
+  padding: 0.75rem 1rem;
+
+  background: rgba(255,255,255,0.7);
+  border: 1.6px solid rgba(108,92,231,0.35);
+  border-radius: 12px;
+
   font-size: 1rem;
-  border: 1.5px solid #cbd5e1;
-  border-radius: 8px;
-  transition: border-color 0.3s ease;
-  font-family: 'Montserrat', sans-serif;
+  transition: 0.3s ease;
 }
 
 .form-group input:focus {
-  border-color: #4a90e2;
+  border-color: #6c5ce7;
+  box-shadow: 0 0 0 3px rgba(108,92,231,0.25);
   outline: none;
 }
+
+/* -------------------- LOGIN BUTTON -------------------- */
 
 .btn {
   width: 100%;
-  background-color: #4a90e2;
-  color: white;
-  padding: 0.75rem 0;
-  border: none;
-  border-radius: 25px;
-  font-weight: 600;
+  margin-top: 1rem;
+
+  background: linear-gradient(135deg, #6c5ce7, #00cec9);
+  color: #fff;
+
+  padding: 0.85rem 0;
   font-size: 1.1rem;
+  font-weight: 600;
+
+  border-radius: 30px;
+  border: none;
   cursor: pointer;
-  box-shadow: 0 6px 20px rgba(74, 144, 226, 0.5);
-  transition: background-color 0.3s ease;
+
+  box-shadow: 0 6px 20px rgba(108,92,231,0.4);
+  transition: 0.3s ease-in-out;
 }
 
-.btn:hover,
-.btn:focus {
-  background-color: #005a9c;
-  outline: none;
+.btn:hover {
+  background: linear-gradient(135deg, #00cec9, #6c5ce7);
+  box-shadow: 0 8px 30px rgba(0,206,201,0.4);
 }
+
+/* -------------------- ERROR MESSAGE -------------------- */
 
 .error-text {
-  color: #d9534f;
-  margin-top: 1rem;
+  color: #d63031;
   font-weight: 600;
-  min-height: 1.2em;
+  margin-top: 1rem;
+  min-height: 1.2rem;
 }
 
+/* -------------------- SIGNUP LINK -------------------- */
+
 .auth-container p {
-  margin-top: 1.5rem;
+  margin-top: 1.4rem;
   font-size: 0.95rem;
-  color: #555;
+  color: #2d3436;
 }
 
 .auth-container p a {
-  color: #4a90e2;
-  text-decoration: none;
+  color: #00cec9;
   font-weight: 600;
+  text-decoration: none;
 }
 
 .auth-container p a:hover {
   text-decoration: underline;
+}
+
+/* Role dropdown (short version) */
+.role-select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(255,255,255,0.7);
+  border: 1.6px solid rgba(108,92,231,0.35);
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.role-select:focus {
+  border-color: #6c5ce7;
+  box-shadow: 0 0 0 3px rgba(108,92,231,0.25);
+  outline: none;
+}
+
+
+
+/* -------------------- RESPONSIVE -------------------- */
+
+@media (max-width: 480px) {
+  .auth-container {
+    padding: 2rem 1.5rem;
+    border-radius: 15px;
+  }
+
+  .auth-container h2 {
+    font-size: 1.7rem;
+  }
+
+  .btn {
+    font-size: 1rem;
+    padding: 0.75rem;
+  }
+}
+
+/* -------------------- FADE IN ANIMATION -------------------- */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

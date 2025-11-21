@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Reports | Campus Event System</title>
+    <link rel="stylesheet" href="report.css">
+    <style>
+        body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+    }
+
+    /* Navbar */
+    nav {
+      background: #222;
+      padding: 12px 20px;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    /* Container */
+    .container {
+      max-width: 900px;
+      margin: 25px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+      color: #222;
+      border-left: 4px solid #4CAF50;
+      padding-left: 10px;
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    ul {
+      line-height: 1.6;
+    }
+
+    /* KPI Grid */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .kpi-box {
+      background: #e8f5e9;
+      padding: 20px;
+      text-align: center;
+      border-radius: 8px;
+      border: 1px solid #c8e6c9;
+    }
+
+    .kpi-box h4 {
+      margin: 0;
+      color: #2e7d32;
+      font-size: 16px;
+    }
+
+    .kpi-box p {
+      margin-top: 10px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #1b5e20;
+    }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Campus Event System</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="event.html">Events</a></li>
+            <li><a href="users.html">Users</a></li>
+            <li><a href="login.html" onclick="logout()">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+
+        <!-- EXECUTIVE SUMMARY -->
+        <div class="section">
+            <h2>Executive Summary</h2>
+            <p>
+                This report provides an overview of the event's performance, highlighting total participation,
+                engagement levels, financial outcomes, and key lessons learned. The event achieved strong 
+                registration numbers and met major KPIs, with positive feedback from attendees and sponsors.
+            </p>
+        </div>
+
+        <!-- KPIs -->
+        <div class="section">
+            <h2>Key Performance Indicators (KPIs)</h2>
+
+            <div class="kpi-grid">
+                <div class="kpi-box">
+                    <h4>Total Registrations</h4>
+                    <p>0</p>
+                </div>
+                <div class="kpi-box">
+                    <h4>Actual Attendance</h4>
+                    <p>0</p>
+                </div>
+                <div class="kpi-box">
+                    <h4>Conversion Rate</h4>
+                    <p>00.0%</p>
+                </div>
+                <div class="kpi-box">
+                    <h4>Revenue Generated</h4>
+                    <p>₹0</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- AUDIENCE INSIGHTS -->
+        <div class="section">
+            <h2>Audience Insights</h2>
+            <p><strong>Demographics Summary:</strong></p>
+            <ul>
+                <li><strong>Locations:</strong> Hyderabad (40%), Bangalore (25%), Chennai (15%), Others (20%)</li>
+                <li><strong>Age Groups:</strong> 18–22 (60%), 23–28 (35%), 29+ (5%)</li>
+                <li><strong>Fields:</strong> Engineering, Management, Arts, Computer Science</li>
+            </ul>
+        </div>
+
+        <!-- ENGAGEMENT METRICS -->
+        <div class="section">
+            <h2>Engagement Metrics</h2>
+            <ul>
+                <li><strong>Most Popular Sessions:</strong> AI Workshop, Cloud Computing Panel, Startup Pitch Event</li>
+                <li><strong>Survey Participation Rate:</strong> 58%</li>
+                <li><strong>Social Media Reach:</strong> 12,500+ impressions, 1,300 interactions</li>
+            </ul>
+        </div>
+
+        <!-- FINANCIAL OVERVIEW -->
+        <div class="section">
+            <h2>Financial Overview</h2>
+            <p><strong>Budget Summary:</strong></p>
+            <ul>
+                <li><strong>Projected Expense:</strong> ₹90,000</li>
+                <li><strong>Actual Expense:</strong> ₹84,000</li>
+                <li><strong>Revenue Generated:</strong> ₹1,20,000</li>
+                <li><strong>Net Profit:</strong> ₹36,000</li>
+                <li><strong>ROI:</strong> 42%</li>
+            </ul>
+        </div>
+
+        <!-- FEEDBACK & TAKEAWAYS -->
+        <div class="section">
+            <h2>Feedback & Key Takeaways</h2>
+            <p><strong>Attendee Feedback:</strong> Overall satisfaction was high, with strong appreciation for session quality, organizing teams, and venue setup.</p>
+            <p><strong>Sponsor Feedback:</strong> Positive response due to high footfall and good visibility.</p>
+            <p><strong>Team Recommendations:</strong></p>
+            <ul>
+                <li>Increase the number of hands-on technical workshops.</li>
+                <li>Improve the registration desk speed to reduce waiting time.</li>
+                <li>Expand marketing to reach more non-local participants.</li>
+            </ul>
+        </div>
+
+    </div>
+
+</body>
+</html>

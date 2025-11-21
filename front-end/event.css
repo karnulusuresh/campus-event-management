@@ -1,160 +1,240 @@
-/* style.css for Events page */
+/* =======================
+   CAMPUS THEME EVENTS PAGE
+=========================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
+
+/* -------------------- PAGE BACKGROUND -------------------- */
 
 body {
-  background-color: #f8fafc;
-  color: #333;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  background: linear-gradient(135deg, rgba(108,92,231,0.18), rgba(0,206,201,0.15)),
+              url("https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1920&q=60");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding-bottom: 3rem;
 }
 
+/* -------------------- NAVBAR -------------------- */
+
 nav {
-  background-color: #283e4a;
+  background: rgba(108, 92, 231, 0.8);
   padding: 1rem 2rem;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  backdrop-filter: blur(6px);
+  border-bottom: 2px solid rgba(255,255,255,0.3);
 }
 
 .logo {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   font-weight: 700;
-  color: #fff;
-  letter-spacing: 2px;
+  color: white;
+  letter-spacing: 1px;
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  gap: 1.5rem;
+  gap: 1.2rem;
 }
 
 nav ul li a {
-  color: #a7b8c6;
-  font-weight: 500;
+  color: #f3eaff;
   text-decoration: none;
-  transition: color 0.3s ease;
-  padding: 0.4rem 0.6rem;
-  border-radius: 4px;
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: 0.3s;
 }
 
 nav ul li a:hover,
 nav ul li a.active {
-  color: #fff;
-  background-color: #4a90e2;
+  background: #00cec9;
+  color: white;
 }
+
+/* -------------------- CONTAINER -------------------- */
 
 .container {
-  padding: 2rem 3rem;
-  flex-grow: 1;
   max-width: 900px;
-  margin: 0 auto;
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  margin: 2rem auto;
+  padding: 2rem;
+
+  background: rgba(255,255,255,0.28);
+  border-radius: 18px;
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.45);
+  box-shadow: 0 6px 30px rgba(0,0,0,0.15);
 }
 
-h2 {
-  color: #283e4a;
-  margin-bottom: 1.5rem;
+.container h2,
+.container h3 {
+  color: #6c5ce7;
   font-weight: 700;
   text-align: center;
+  margin-top: 1.0rem;
+  margin-bottom: 0.5rem;
 }
 
-table#eventTable {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 2rem;
+/* -------------------- EVENT CARDS -------------------- */
+
+.event-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.8rem;
 }
 
-table#eventTable thead {
-  background-color: #4a90e2;
-  color: white;
+.event-card {
+  padding: 1.7rem;
+  border-radius: 15px;
+
+  backdrop-filter: blur(14px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+
+  transition: 0.3s ease;
 }
 
-table#eventTable thead th {
-  text-align: left;
-  padding: 1rem 1.5rem;
-  font-weight: 600;
+.event-card:hover {
+  box-shadow: 0 15px 35px rgba(0,0,0,0.18);
 }
 
-table#eventTable tbody tr:nth-child(even) {
-  background-color: #f4f7fb;
+.event-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #6c5ce7;
 }
 
-table#eventTable tbody td {
-  padding: 1rem 1.5rem;
-  border-bottom: 1px solid #e1e8f0;
-  color: #555;
+.event-category {
+  font-size: 0.95rem;
+  margin-top: 0.3rem;
+  font-weight: 500;
+  color: #00cec9;
 }
 
-hr {
-  border: none;
-  border-top: 1px solid #e1e8f0;
-  margin: 2rem 0;
+.event-description {
+  margin: 0.6rem 0 1rem;
 }
 
-h3 {
-  color: #283e4a;
-  margin-bottom: 1rem;
-  font-weight: 600;
-  text-align: center;
+.event-time,
+.event-location {
+  font-size: 0.9rem;
 }
 
-form#createEventForm {
-  display: flex;
-  flex-wrap: wrap;
+.event-card.music-concert {
+  background-image: url('https://t4.ftcdn.net/jpg/03/09/49/25/360_F_309492578_kHCxmpZPGWFY5VpB4h6lFOO1KVebgF5G.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff; /* Adjust text color if needed for readability */
+  position: relative;
+  /* Optional: add overlay for legibility */
+  /* You can add a pseudo-element for overlay if needed */
+}
+
+
+/* -------------------- EVENT FORM -------------------- */
+
+.event-form {
+  margin-top: 1rem;
+  display: grid;
   gap: 1rem;
-  justify-content: center;
-  margin-bottom: 1rem;
 }
 
-form#createEventForm input[type="text"],
-form#createEventForm input[type="datetime-local"] {
-  flex: 1 1 250px;
-  padding: 0.6rem 1rem;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
+.event-form input,
+.event-form #categoryName {
+  width: 100%;
+  padding: 0.8rem 1rem;
+
+  background: rgba(255,255,255,0.7);
+  border: 1.6px solid rgba(108,92,231,0.35);
+  border-radius: 12px;
+
   font-size: 1rem;
-  transition: border-color 0.3s ease;
+  transition: 0.3s ease;
 }
 
-form#createEventForm input[type="text"]:focus,
-form#createEventForm input[type="datetime-local"]:focus {
-  border-color: #4a90e2;
+.event-form input:focus {
+  border-color: #6c5ce7;
+  box-shadow: 0 0 0 3px rgba(108,92,231,0.25);
   outline: none;
 }
 
-form#createEventForm button {
-  background-color: #4a90e2;
+.event-form .create-btn {
+  background: linear-gradient(135deg, #6c5ce7, #00cec9);
   color: white;
+
+  padding: 0.75rem 1.5rem;
+  border-radius: 30px;
+
+  font-size: 1rem;
+  font-weight: 600;
+
   border: none;
-  padding: 0.6rem 2.5rem;
-  border-radius: 25px;
-  font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(74, 144, 226, 0.4);
-  transition: background-color 0.3s ease;
-  flex-shrink: 0;
+  transition: 0.25s ease-in-out;
 }
 
-form#createEventForm button:hover,
-form#createEventForm button:focus {
-  background-color: #005a9c;
-  outline: none;
-}
+/* -------------------- REGISTER BUTTON -------------------- */
 
-#eventMsg {
-  text-align: center;
+.register-btn {
+   margin-top: auto; /* Pushes the object to the bottom */
+  align-self: flex-end; /* Ensures it aligns to the right within its flex container */
+  /* Or, for absolute positioning within the card */
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+
+  background: linear-gradient(135deg, #6c5ce7, #00cec9);
+  color: white;
+
+  padding: 0.45rem 1rem;
+  border-radius: 25px;
+
+  font-size: 0.9rem;
   font-weight: 600;
-  color: #218838; /* green tone */
+
+  border: none;
+  cursor: pointer;
+  transition: 0.25s ease-in-out;
+}
+
+.register-btn:hover {
+  background: linear-gradient(135deg, #00cec9, #6c5ce7);
+  transform: translateY(-2px);
+}
+
+/* Ensure layout is not broken by float */
+.event-card::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+
+/* -------------------- RESPONSIVE -------------------- */
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  nav ul {
+    flex-direction: column;
+  }
+
+  .container {
+    padding: 1.5rem;
+  }
 }

@@ -10,18 +10,18 @@
   <nav>
     <div class="logo">Event Management System</div>
     <ul>
-      <li><a href="users.html">Users</a></li>
+      <li><a href="aboutUs.html">About Us</a></li>
       <li><a href="event.html">Events</a></li>
-      <li><a href="registrations.html">Registrations</a></li>
       <li><a href="reports.html">Reports</a></li>
-      <li><a href="settings.html">Settings</a></li>
+      <!-- <li><a href="settings.html">Settings</a></li> -->
+      <li><a href="registrations.html">Register</a></li>
       <li><a href="login.html" onclick="logout()">Logout</a></li>
     </ul>
   </nav>
 
   <header class="header-banner">
     <h1>Welcome to Campus Events!</h1>
-    <p>Use the navigation menu to manage Users, Events, Registrations, Reports, and Settings.</p>
+    <p>Discover, participate, and connect with exciting college events. From tech seminars to cultural festivals, find your perfect event experience.</p>
   </header>
 
   <main class="dashboard-cards">
@@ -52,22 +52,22 @@
     <div class="stats-grid">
       <div class="stat">
         <h4>Users</h4>
-        <p class="number">1,254</p>
+        <p class="number" id="users-count">1,254</p>
         <p class="desc">Active users registered</p>
       </div>
       <div class="stat">
         <h4>Events</h4>
-        <p class="number">87</p>
+        <p class="number" id="events-count">87</p>
         <p class="desc">Total events created</p>
       </div>
       <div class="stat">
         <h4>Registrations</h4>
-        <p class="number">3,120</p>
+        <p class="number" id="registrations-count">3,120</p>
         <p class="desc">Event registrations this year</p>
       </div>
       <div class="stat">
         <h4>Pending Approvals</h4>
-        <p class="number">24</p>
+        <p class="number" id="pendings-count">24</p>
         <p class="desc">Pending event registrations</p>
       </div>
     </div>
@@ -102,5 +102,39 @@
   </footer>
 
   <script src="auth.js"></script>
+  <script>
+    const token = localStorage.getItem("jwt");
+    async function loadStats() {
+    try {
+        const users = await fetch("http://localhost:8080/api/users/users-count",{
+      method: "GET",
+      headers: { "Authorization": `Bearer ${token}` }
+    }).then(r => r.text());
+        const events = await fetch("http://localhost:8080/api/events/event-count",{
+      method: "GET",
+      headers: { "Authorization": `Bearer ${token}` }
+    }).then(r => r.text());
+        const registrations = await fetch("http://localhost:8080/api/registrations/registration-count",{
+      method: "GET",
+      headers: { "Authorization": `Bearer ${token}` }
+    }).then(r => r.text());
+        const pending = await fetch("http://localhost:8080/api/registrations/pending-count",{
+      method: "GET",
+      headers: { "Authorization": `Bearer ${token}` }
+    }).then(r => r.text());
+
+        document.querySelector("#users-count").innerText = users;
+        document.querySelector("#events-count").innerText = events;
+        document.querySelector("#registrations-count").innerText = registrations;
+        document.querySelector("#pendings-count").innerText = pending;
+
+    } catch (err) {
+        console.error("Failed to load stats:", err);
+    }
+}
+
+loadStats();
+
+  </script>
 </body>
 </html>

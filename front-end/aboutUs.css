@@ -1,0 +1,84 @@
+/* =======================
+   ABOUT US SECTION
+========================== */
+
+.about-us {
+  padding: 4rem 1rem;
+  margin-top: 3rem;
+}
+
+.about-title {
+  font-size: 2.5rem;
+  text-align: center;
+  font-weight: 700;
+  background: linear-gradient(135deg, #6c5ce7, #00cec9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 3rem;
+  margin-top: auto;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.about-text h3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #6c5ce7;
+  margin-bottom: 1rem;
+}
+
+.about-text p {
+  font-size: 1.05rem;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  color: #2d3436;
+}
+
+.about-points {
+  margin-top: 1.2rem;
+  list-style: none;
+}
+
+.about-points li {
+  background: rgba(255,255,255,0.25);
+  border-left: 5px solid #6c5ce7;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  margin-bottom: 0.8rem;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  backdrop-filter: blur(8px);
+}
+
+.about-images {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.about-img {
+  width: 100%;
+  border-radius: 18px;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+}
+
+.small-img {
+  width: 80%;
+  align-self: flex-end;
+}
+
+@media (max-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .small-img {
+    width: 100%;
+    align-self: center;
+  }
+}

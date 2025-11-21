@@ -36,6 +36,42 @@
     <p>Already have an account? <a href="login.html">Login</a></p>
   </div>
 
-  <script src="auth.js"></script>
+  <script>
+    // SIGNUP
+    const BASE_URL = "http://localhost:8080/api";
+const signupForm = document.getElementById("signupForm");
+if (signupForm) {
+  const roleMap = {
+    "ADMIN": 1,
+    "FACULTY": 2,
+    "STUDENT": 3
+  };
+
+  signupForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const roleName = document.getElementById("roleId").value; // this is role name string now
+    const user = {
+      name: document.getElementById("name").value,
+      email: document.getElementById("email").value,
+      password: document.getElementById("password").value,
+      roleId: roleMap[roleName] || 3 // fallback to STUDENT if not found
+    };
+
+    try {
+      const res = await fetch(`${BASE_URL}/users`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(user),
+      });
+      if (!res.ok) throw new Error("Failed to sign up");
+      alert("Signup successful! Please login.");
+      window.location.href = "login.html";
+    } catch (err) {
+      document.getElementById("errorMessage").textContent = err.message;
+    }
+  });
+}
+  </script>
 </body>
 </html>
