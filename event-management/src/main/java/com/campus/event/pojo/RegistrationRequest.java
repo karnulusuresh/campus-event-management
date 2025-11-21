@@ -1,13 +1,19 @@
 package com.campus.event.pojo;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
 public class RegistrationRequest {
-    @NotNull(message = "userId is required")
-    private Long userId;
+	
+    @NotNull(message = "userName is required")
+    private String name;
+    
+    @NotNull(message = "email is required")
+    @Email
+    private String email;
 
-    @NotNull(message = "eventId is required")
-    private Long eventId;
+    @NotNull(message = "eventName is required")
+    private String title;
 }

@@ -19,6 +19,8 @@ public interface EventService {
     
     String  deleteEvent(Long id);
     
-    String  deleteAllEvents();
+    public String deleteEventById(Long eventId);
+    
+    public long countEvents();
 
 }

@@ -41,14 +41,6 @@ public class RegistrationController {
 		return response;
 	}
 	
-	@GetMapping("/{userId}")
-	public RegistrationDTO getRegistrationsById(@PathVariable Long userId) {
-		log.info("getRegistrationsById called with id : {} ",userId);
-		RegistrationDTO response = regService.getRegistrationById(userId);
-		log.info("Retrieved response by Id as : {}",response);
-		return response;
-	}
-	
 	@GetMapping("/user/{userId}")
 	public List<RegistrationDTO> getRegistrationsByUser(@PathVariable Long userId) {
 		log.info("getRegistrationsByUser called with id : {} ",userId);
@@ -65,7 +57,21 @@ public class RegistrationController {
 		return response;
 	}
 	
+	@GetMapping("registration-count")
+	public long count() {
+		log.info("calling registrations service for count..");
+		long count = regService.countRegistrations();
+		log.info("retrieved registrations count");
+		return count;
+	}
 	
+	@GetMapping("pending-count")
+	public long pendingCount() {
+		log.info("pending count method was calling");
+		long count = regService.countPendingApprovals();
+		log.info("Retrieve peding count");
+		return count;
+	}
 	
 	@DeleteMapping("/{regId}/cancel/{userId}")
 	public RegistrationDTO cancelRegistration(@PathVariable Long regId,@PathVariable Long userId) { 
@@ -75,5 +81,8 @@ public class RegistrationController {
 		return response;
 	}
 
-
+	@DeleteMapping("/{eventId}")
+	public void deleteAll(@PathVariable Long eventId) {
+		regService.deleteByEventId(eventId);
+	}
 }

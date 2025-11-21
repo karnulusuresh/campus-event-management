@@ -67,6 +67,14 @@ public class UserController {
 		return "User Deleted"; 
 	}
 	
+	@GetMapping("/users-count")
+	public long usersCount() {
+		log.info("calling users count service..");
+		long count = userService.countUsers();
+		log.info("Retrieved users count from userservice");
+		return count;
+	}
+	
 	@PostConstruct
 	public void construct() {
 		log.info("initiated UserController.......");

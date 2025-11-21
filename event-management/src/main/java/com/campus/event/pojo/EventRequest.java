@@ -26,11 +26,11 @@ public class EventRequest {
     @NotBlank(message = "Location is required")
     private String location;
 
-    @NotNull(message = "Category ID is required")
-    private Long categoryId;
+    @NotNull(message = "Category name is required")
+    private String categoryName;
 
     @NotNull(message = "CreatedByUserId is required")
-    private Long createdByUserId;
+    private String createdByUserName;
 
    
 }

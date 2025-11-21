@@ -128,4 +128,13 @@ public class UserServiceImpl implements UserService {
                 user.getCreatedAt()
         );
     }
+    
+    @Override
+    public long countUsers() {
+    	log.info("counting users...");
+    	long count = userRepository.count();
+    	log.info("users count is : {}",count);
+    	return count;
+    }
+    
 }

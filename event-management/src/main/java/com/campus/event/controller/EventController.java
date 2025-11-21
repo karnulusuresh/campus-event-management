@@ -2,6 +2,7 @@ package com.campus.event.controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import com.campus.event.service.EventService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 @RestController
 @RequestMapping("/api/events")
 @Slf4j
@@ -43,7 +45,7 @@ public class EventController {
 	}
 	
 	@GetMapping("/{id}")
-	public EventDTO getEventById(@PathVariable Long id) {
+	public EventDTO getEventsById(@PathVariable Long id) {
 		log.info("getEventsById() called with id : {} ",id);
 		EventDTO response = eventService.getEventById(id);
 		log.info("retrieved response as : {}",response);
@@ -73,12 +75,21 @@ public class EventController {
 		return response;
 	}
 	
-	@DeleteMapping("/all")
-	public String deleteAll() {
+	@DeleteMapping("/delete/{id}")
+	public String deleteEvent(@PathVariable Long id) {
 		log.info("deleting all events ");
-		String response = eventService.deleteAllEvents();
+		String response = eventService.deleteEventById(id);
 		log.info("deleted all events...");
 		return response;
+	}
+	
+	
+	@GetMapping("event-count")
+	public long eventCount() {
+		log.info("calling eventservice for count");
+		long count = eventService.countEvents();
+		log.info("retrieved events count from event service");
+		return count;
 	}
 
 }

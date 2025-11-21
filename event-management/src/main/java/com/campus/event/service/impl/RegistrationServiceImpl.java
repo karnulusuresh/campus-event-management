@@ -32,13 +32,13 @@ public class RegistrationServiceImpl implements RegistrationService {
     @Override
     public RegistrationDTO registerUserForEvent(RegistrationRequest request) {
         try {
-            log.info("Registering user {} for event {}", request.getUserId(), request.getEventId());
+            log.info("Registering user {} for event {}", request.getName(), request.getTitle());
 
-            User user = userRepository.findById(request.getUserId())
-                    .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + request.getUserId()));
+            User user = userRepository.findByName(request.getName())
+                    .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + request.getName()));
 
-            Event event = eventRepository.findById(request.getEventId())
-                    .orElseThrow(() -> new ResourceNotFoundException("Event not found with ID: " + request.getEventId()));
+            Event event = eventRepository.findEventByTitle(request.getTitle())
+                    .orElseThrow(() -> new ResourceNotFoundException("Event not found with ID: " + request.getTitle()));
 
             if (event.getEndDateTime() != null && event.getEndDateTime().isBefore(LocalDateTime.now())) {
                 throw new BadRequestException("Cannot register for an event that has already ended.");
@@ -73,20 +73,7 @@ public class RegistrationServiceImpl implements RegistrationService {
         }
     }
 
-    @Override
-    public RegistrationDTO getRegistrationById(Long id) {
-        try {
-            log.info("Fetching registration by ID: {}", id);
-            Registration reg = registrationRepository.findById(id)
-                    .orElseThrow(() -> new ResourceNotFoundException("Registration not found with ID: " + id));
-            return mapToDTO(reg);
-        } catch (ResourceNotFoundException ex) {
-            throw ex;
-        } catch (Exception ex) {
-            log.error("Error fetching registration: {}", ex.getMessage(), ex);
-            throw new GeneralServiceException("Failed to fetch registration", ex);
-        }
-    }
+//
 
     @Override
     public List<RegistrationDTO> getAllRegistrations() {
@@ -186,5 +173,27 @@ public class RegistrationServiceImpl implements RegistrationService {
         dto.setUserName(reg.getUser().getName());
         dto.setEventTitle(reg.getEvent().getTitle());
         return dto;
+    }
+    
+    @Override
+    public long countRegistrations() {
+    	log.info("registrations are counting..");
+    	long count = registrationRepository.count();
+    	log.info("registrations count is : {}",count);
+    	return count;
+    }
+    
+    @Override
+    public long countPendingApprovals() {
+    	log.info("counting pending approvals");
+    	long count = registrationRepository.countPendingApprovals();
+    	log.info("pending approvals are : {}",count);
+    	return count;
+    }
+    
+    @Override 
+    public void deleteByEventId(Long eventId) {
+    	registrationRepository.deleteByEventId(eventId);
+    	log.info("delted All events");
     }
 }

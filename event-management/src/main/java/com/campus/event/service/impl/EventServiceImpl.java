@@ -18,6 +18,7 @@ import com.campus.event.exception.ResourceNotFoundException;
 import com.campus.event.pojo.EventRequest;
 import com.campus.event.repository.CategoryRepository;
 import com.campus.event.repository.EventRepository;
+import com.campus.event.repository.RegistrationRepository;
 import com.campus.event.repository.UserRepository;
 import com.campus.event.service.EventService;
 
@@ -32,6 +33,7 @@ public class EventServiceImpl implements EventService {
     private final EventRepository eventRepository;
     private final CategoryRepository categoryRepository;
     private final UserRepository userRepository;
+	private final RegistrationRepository registrationRepository;
 
     // --------------------------------------------------------
     // 1. Get All Events
@@ -40,7 +42,7 @@ public class EventServiceImpl implements EventService {
     public List<EventDTO> getAllEvents() {
         try {
             log.info("Fetching all events...");
-            List<Event> events = eventRepository.findAll();
+            List<Event> events = eventRepository.findAllByOrderByStartDateTimeDesc();
             if (events.isEmpty()) {
                 throw new ResourceNotFoundException("No events found");
             }
@@ -98,12 +100,12 @@ public class EventServiceImpl implements EventService {
             log.info("Event creation started: {}", eventRequest.getTitle());
 
             // Validate category
-            Category category = categoryRepository.findById(eventRequest.getCategoryId())
-                    .orElseThrow(() -> new ResourceNotFoundException("Category not found with ID: " + eventRequest.getCategoryId()));
-
+            Category category = categoryRepository.findByName(eventRequest.getCategoryName())
+                    .orElseThrow(() -> new ResourceNotFoundException("Category not found with Name: " + eventRequest.getCategoryName()));
+            
             // Validate user
-            User createdUser = userRepository.findById(eventRequest.getCreatedByUserId())
-                    .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + eventRequest.getCreatedByUserId()));
+            User createdUser = userRepository.findByName(eventRequest.getCreatedByUserName())
+                    .orElseThrow(() -> new ResourceNotFoundException("User not found with Name: " + eventRequest.getCreatedByUserName()));
 
             // Role check
             if (!createdUser.getUserRole().equals(RoleEnum.ADMIN)) {
@@ -152,11 +154,11 @@ public class EventServiceImpl implements EventService {
             Event event = eventRepository.findById(id)
                     .orElseThrow(() -> new ResourceNotFoundException("Event not found with ID " + id));
 
-            Category category = categoryRepository.findById(request.getCategoryId())
-                    .orElseThrow(() -> new ResourceNotFoundException("Category not found with ID " + request.getCategoryId()));
+            Category category = categoryRepository.findByName(request.getCategoryName())
+                    .orElseThrow(() -> new ResourceNotFoundException("Category not found with ID " + request.getCategoryName()));
 
-            User user = userRepository.findById(request.getCreatedByUserId())
-                    .orElseThrow(() -> new ResourceNotFoundException("User not found with ID " + request.getCreatedByUserId()));
+            User user = userRepository.findByName(request.getCreatedByUserName())
+                    .orElseThrow(() -> new ResourceNotFoundException("User not found with ID " + request.getCreatedByUserName()));
 
             // Only admin can update
             if (!user.getUserRole().equals(RoleEnum.ADMIN)) {
@@ -213,16 +215,15 @@ public class EventServiceImpl implements EventService {
     // 7. Delete All Events
     // --------------------------------------------------------
     @Override
-    public String deleteAllEvents() {
-        try {
-            log.info("Deleting all events...");
-            eventRepository.deleteAll();
-            return "All events deleted successfully.";
-        } catch (Exception ex) {
-            log.error("Error deleting all events: {}", ex.getMessage());
-            throw new GeneralServiceException("Failed to delete all events", ex);
-        }
+    public String deleteEventById(Long eventId) {
+        // 1. Delete registrations linked to this event
+        registrationRepository.deleteByEventId(eventId);
+
+        // 2. Now delete the event safely
+        eventRepository.deleteById(eventId);
+        return "deleted event";
     }
+    
 
     // --------------------------------------------------------
     // Mapping (Entity → DTO)
@@ -240,5 +241,13 @@ public class EventServiceImpl implements EventService {
         dto.setCategoryName(event.getCategory() != null ? event.getCategory().getName() : null);
         dto.setCreatedByUserId(event.getCreatedByUser() != null ? event.getCreatedByUser().getUserId() : null);
         return dto;
+    }
+    
+    @Override
+    public long countEvents() {
+    	log.info("events are counting");
+    	long count = eventRepository.count();
+    	log.info("events count is : {}",count);
+    	return count;
     }
 }
